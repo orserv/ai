@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>❤</title>
+    <link type="text/css" rel="stylesheet" href="./index_files/default.css">
+    <script type="text/javascript" src="./index_files/jquery.min.js"></script>
+    <script type="text/javascript" src="./index_files/jscex.min.js"></script>
+    <script type="text/javascript" src="./index_files/jscex-parser.js"></script>
+    <script type="text/javascript" src="./index_files/jscex-jit.js"></script>
+    <script type="text/javascript" src="./index_files/jscex-builderbase.min.js"></script>
+    <script type="text/javascript" src="./index_files/jscex-async.min.js"></script>
+    <script type="text/javascript" src="./index_files/jscex-async-powerpack.min.js"></script>
+    <script type="text/javascript" src="./index_files/functions.js" charset="utf-8"></script>
+    <script type="text/javascript" src="./index_files/love.js" charset="utf-8"></script>
+    <style>
+        .kf{
+            position: fixed;
+            right: 20px;
+            top: 30%;
+            z-index: 999;
+            /*background: #212121;
+            border: #1c2327 3px solid;
+            width: 150px;
+            border-radius: 3px;
+            text-align: center;*/
+        }
+        .search{
+            float:  left;
+        }
+    </style>
+
+</head>
+
+<body>
+    <audio autoplay="autopaly" loop="loop">
+        <source src="./index_files/music.mp3" type="audio/mp3" />
+    </audio>
+    <!--这是天气-->
+    <iframe allowtransparency="true" frameborder="0" width="300" height="28" scrolling="no" src="https://tianqi.2345.com/plugin/widget/index.htm?s=3&z=1&t=1&v=0&d=1&bd=0&k=&f=&q=1&e=1&a=1&c=54511&w=300&h=28&align=center"></iframe>
+    <div class="search">
+        <form action="https://www.baidu.com/s" method="GET" >
+            <input placeholder="输入关键词搜索" name="wd">
+            <button type="submit"> 提交</button>
+        </form>    
+    </div>
+    
+    <div id="main">
+        <div id="error">本页面采用HTML5编辑，目前您的浏览器无法显示，请换成谷歌(<a href="http://www.google.cn/chrome/intl/zh-CN/landing_chrome.html?hl=zh-CN&brand=CHMI">Chrome</a>)或者火狐(<a href="http://firefox.com.cn/download/">Firefox</a>)浏览器，或者升级你的浏览器到最新版本。</div>
+        <div id="wrap">
+            <div id="text">
+                <div id="code">
+                    <span class="say"> </span><br>
+                    <span class="say"> Our Story - 我们的故事</span><br>
+                    <span class="say"> </span><br>
+                    <span class="say">// 不经意相识, 或许是缘分，或许是注定的。</span><br>
+                    <span class="say"> </span><br>
+                    <span class="say">// 以后不管有怎么样，我都会在。</span><br>
+                    <span class="say"> </span><br>
+                    <span class="say">// 就算全世界都都抛弃你，记得还有我。</span><br>
+                    <span class="say"> </span><br>
+                    <span class="say">// 再累都不用害怕，因为你有我。</span><br>
+                    <span class="say"> </span><br>
+                    <span class="say">// 记得在你最需要的时候想起我。</span><br>
+                    <span class="say"> </span><br>
+                    <span class="say">// 我会一直陪着你。</span><br>
+                    <span class="say"> </span><br>
+                    <!-- <span class="say">// You are my only girl</span><br> -->
+                    <!-- <span class="say"> </span><br> -->
+                    <span class="say">//—博客 <br></span>
+                    <span class="say"> </span><br>
+                    <span class="say">//——<a href="https://www.orys.link">点击访问更多好文章</a></span><br>
+                    <span class="say"> </span><br>
+                    <span class="say"><span class="space"></span> -- OR科技 -- </span>
+                </div>
+            </div>
+            <div id="clock-box">
+                我 <span style="color: #666">与</span> 你 <span style="color: #666">已经相识了</span>
+                <div id="clock"></div>
+            </div>
+            <canvas id="canvas" width="1100" height="640"></canvas>
+        </div>
+    </div>
+
+    <div style="text-align: center;">
+        <div style="position:relative; top:0; margin-right:auto;margin-left:auto; z-index:99999">
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+                var hm = document.createElement("script");
+                hm.src = "https://hm.baidu.com/hm.js?08b735ca74abfffb1ba1823ccf8900f4";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(hm, s);
+            })();
+            </script>
+            <!-- 66 -->
+            <script>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?8eff63e93bd7327760d76e781c12c93a";
+              var s = document.getElementsByTagName("script")[0]; 
+              s.parentNode.insertBefore(hm, s);
+            })();
+            </script>
+
+        </div>
+    </div>
+</body> 
+
+<!-- canvas -->
+<script>
+    (function() {
+        var canvas = $('#canvas');
+
+        if (!canvas[0].getContext) {
+            $("#error").show();
+            return false;
+        }
+
+        var width = canvas.width();
+        var height = canvas.height();
+
+        canvas.attr("width", width);
+        canvas.attr("height", height);
+
+        var opts = {
+            seed: {
+                x: width / 2 - 20,
+                color: "rgb(190, 26, 37)",
+                scale: 2
+            },
+            branch: [
+                [535, 680, 570, 250, 500, 200, 30, 100, [
+                    [540, 500, 455, 417, 340, 400, 13, 100, [
+                        [450, 435, 434, 430, 394, 395, 2, 40]
+                    ]],
+                    [550, 445, 600, 356, 680, 345, 12, 100, [
+                        [578, 400, 648, 409, 661, 426, 3, 80]
+                    ]],
+                    [539, 281, 537, 248, 534, 217, 3, 40],
+                    [546, 397, 413, 247, 328, 244, 9, 80, [
+                        [427, 286, 383, 253, 371, 205, 2, 40],
+                        [498, 345, 435, 315, 395, 330, 4, 60]
+                    ]],
+                    [546, 357, 608, 252, 678, 221, 6, 100, [
+                        [590, 293, 646, 277, 648, 271, 2, 80]
+                    ]]
+                ]]
+            ],
+            bloom: {
+                num: 700,
+                width: 1080,
+                height: 640,
+            },
+            footer: {
+                width: 1200,
+                height: 5,
+                speed: 10,
+            }
+        }
+
+        var tree = new Tree(canvas[0], width, height, opts);
+        var seed = tree.seed;
+        var foot = tree.footer;
+        var hold = 1;
+
+        canvas.click(function(e) {
+            var offset = canvas.offset(),
+                x, y;
+            x = e.pageX - offset.left;
+            y = e.pageY - offset.top;
+            if (seed.hover(x, y)) {
+                hold = 0;
+                canvas.unbind("click");
+                canvas.unbind("mousemove");
+                canvas.removeClass('hand');
+            }
+        }).mousemove(function(e) {
+            var offset = canvas.offset(),
+                x, y;
+            x = e.pageX - offset.left;
+            y = e.pageY - offset.top;
+            canvas.toggleClass('hand', seed.hover(x, y));
+        });
+
+        var seedAnimate = eval(Jscex.compile("async", function() {
+            seed.draw();
+            while (hold) {
+                $await(Jscex.Async.sleep(10));
+            }
+            while (seed.canScale()) {
+                seed.scale(0.95);
+                $await(Jscex.Async.sleep(10));
+            }
+            while (seed.canMove()) {
+                seed.move(0, 2);
+                foot.draw();
+                $await(Jscex.Async.sleep(10));
+            }
+        }));
+
+        var growAnimate = eval(Jscex.compile("async", function() {
+            do {
+                tree.grow();
+                $await(Jscex.Async.sleep(10));
+            } while (tree.canGrow());
+        }));
+
+        var flowAnimate = eval(Jscex.compile("async", function() {
+            do {
+                tree.flower(2);
+                $await(Jscex.Async.sleep(10));
+            } while (tree.canFlower());
+        }));
+
+        var moveAnimate = eval(Jscex.compile("async", function() {
+            tree.snapshot("p1", 240, 0, 610, 680);
+            while (tree.move("p1", 500, 0)) {
+                foot.draw();
+                $await(Jscex.Async.sleep(10));
+            }
+            foot.draw();
+            tree.snapshot("p2", 500, 0, 610, 680);
+
+            // 会有闪烁不得意这样做, (＞﹏＜)
+            canvas.parent().css("background", "url(" + tree.toDataURL('image/png') + ")");
+            canvas.css("background", "#ffe");
+            $await(Jscex.Async.sleep(300));
+            canvas.css("background", "none");
+        }));
+
+        var jumpAnimate = eval(Jscex.compile("async", function() {
+            var ctx = tree.ctx;
+            while (true) {
+                tree.ctx.clearRect(0, 0, width, height);
+                tree.jump();
+                foot.draw();
+                $await(Jscex.Async.sleep(25));
+            }
+        }));
+
+        var textAnimate = eval(Jscex.compile("async", function() {
+            var together = new Date();
+            together.setFullYear(2023, 06, -5); //时间年月日
+            together.setHours(16); //小时 
+            together.setMinutes(53); //分钟
+            together.setSeconds(0); //秒前一位
+            together.setMilliseconds(2); //秒第二位
+
+            $("#code").show().typewriter();
+            $("#clock-box").fadeIn(500);
+            while (true) {
+                timeElapse(together);
+                $await(Jscex.Async.sleep(1000));
+            }
+        }));
+
+        var runAsync = eval(Jscex.compile("async", function() {
+            $await(seedAnimate());
+            $await(growAnimate());
+            $await(flowAnimate());
+            $await(moveAnimate());
+
+            textAnimate().start();
+
+            $await(jumpAnimate());
+        }));
+
+        runAsync().start();
+    })();
+</script>
+
+<!-- 背景 -->
+<!-- <script>
+    !function() {
+        function A(a, b, c) {
+            return a.getAttribute(b) || c
+        }
+        function F(a) {
+            return document.getElementsByTagName(a);
+        }
+        function D() {
+            var c = F("script"),
+                a = c.length,
+                b = c[a - 1];
+            return {
+                l: a,
+                z: A(b, "zIndex", -1),
+                o: A(b, "opacity", 0.5),
+                c: A(b, "color", "0,0,0"),
+                n: A(b, "count", 199)
+            }
+        }
+        function E() {
+            x = i.width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+            B = i.height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        }
+        function M() {
+            J.clearRect(0, 0, x, B);
+            var c = [I].concat(v);
+            var b, d, a, g, e, f;
+            v.forEach(function(h) {
+                h.x += h.xa,
+                    h.y += h.ya,
+                    h.xa *= h.x > x || h.x < 0 ? -1 : 1,
+                    h.ya *= h.y > B || h.y < 0 ? -1 : 1,
+                    J.fillRect(h.x - 0.5, h.y - 0.5, 1, 1);
+                for (d = 0; d < c.length; d++) {
+                    b = c[d];
+                    if (h !== b && null !== b.x && null !== b.y) {
+                        g = h.x - b.x;
+                        e = h.y - b.y;
+                        f = g * g + e * e;
+                        f < b.max && (b === I && f >= b.max / 2 && (h.x -= 0.03 * g, h.y -= 0.03 * e), a = (b.max - f) / b.max, J.beginPath(), J.lineWidth = a / 2, J.strokeStyle = "rgba(" + w.c + "," + (a + 0.2) + ")", J.moveTo(h.x, h.y), J.lineTo(b.x, b.y), J.stroke())
+                    }
+                }
+                c.splice(c.indexOf(h), 1);
+            }),
+                C(M);
+        }
+        var i = document.createElement("canvas"),
+            w = D(),
+            L = "c_n" + w.l, //c_n2
+            J = i.getContext("2d"),
+            x,
+            B,
+            C = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
+                function(a) {
+                    window.setTimeout(a, 1000 / 45)
+                },
+            N = Math.random,
+            I = {
+                x: null,
+                y: null,
+                max: 20000
+            };
+        i.id = L;
+        i.style.cssText = "position:fixed;top:0;left:0;z-index:" + w.z + ";opacity:" + w.o;
+        F("body")[0].appendChild(i);
+        E();
+        window.onresize = E;
+        window.onmousemove = function(a) {
+            a = a || window.event,
+                I.x = a.clientX,
+                I.y = a.clientY
+        };
+        window.onmouseout = function() {
+            I.x = null,
+                I.y = null
+        };
+        for (var v = [], z = 0; w.n > z; z++) {
+            var G = N() * x,
+                H = N() * B,
+                y = 2 * N() - 1,
+                K = 2 * N() - 1;
+            v.push({
+                x: G,
+                y: H,
+                xa: y,
+                ya: K,
+                max: 6000
+            });
+        }
+        setTimeout(function() {
+            M()
+        }, 100)
+    } ();
+</script> -->
+
+
+<!-- 页面点击小红心 -->
+<script>
+! function(e, t, a) {
+    function n() { c(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), o(), r() }
+
+    function r() { for (var e = 0; e < d.length; e++) d[e].alpha <= 0 ? (t.body.removeChild(d[e].el), d.splice(e, 1)) : (d[e].y--, d[e].scale += .004, d[e].alpha -= .013, d[e].el.style.cssText = "left:" + d[e].x + "px;top:" + d[e].y + "px;opacity:" + d[e].alpha + ";transform:scale(" + d[e].scale + "," + d[e].scale + ") rotate(45deg);background:" + d[e].color + ";z-index:99999");
+        requestAnimationFrame(r) }
+
+    function o() { var t = "function" == typeof e.onclick && e.onclick;
+        e.onclick = function(e) { t && t(), i(e) } }
+
+    function i(e) { var a = t.createElement("div");
+        a.className = "heart", d.push({ el: a, x: e.clientX - 5, y: e.clientY - 5, scale: 1, alpha: 1, color: s() }), t.body.appendChild(a) }
+
+    function c(e) { var a = t.createElement("style");
+        a.type = "text/css"; try { a.appendChild(t.createTextNode(e)) } catch (t) { a.styleSheet.cssText = e } t.getElementsByTagName("head")[0].appendChild(a) }
+
+    function s() { return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")" } var d = [];
+    e.requestAnimationFrame = function() { return e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function(e) { setTimeout(e, 1e3 / 60) } }(), n() }(window, document);
+</script>
+
+
+<!-- <script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script> -->
+
+<!-- 禁止 -->
+<script type="text/javascript">
+    window.onload = function(){       
+        //屏蔽键盘事件
+        document.onkeydown = function (){
+            var e = window.event || arguments[0];
+            //F12
+            if(e.keyCode == 123){
+            	alert("小样你想干嘛？");
+                return false;
+                // return true;
+            //Ctrl+Shift+I
+             }else if((e.ctrlKey) && (e.shiftKey) && (e.keyCode == 73)){
+            	alert("还是不给你看");
+                 return false;
+             //Shift+F10
+            }else if((e.shiftKey) && (e.keyCode == 121)){
+            	alert("就是不给你看");
+                 return false;
+             //Ctrl+U
+             }else if((e.ctrlKey) && (e.keyCode == 85)){
+            	alert("再看我生气啦，哼");
+               return false;
+             }
+        };
+         //屏蔽鼠标右键
+        document.oncontextmenu = function (){
+            return false;
+        }
+
+    }
+</script>
+
+<!-- 聊天 -->
+<!-- <script>
+    var s=document.createElement('script');
+    s.src='//topurl.cn/chat.js';
+    document.body.append(s);
+</script> -->
+<script>
+// var time = new Date("2020/2/3 0:0:0").getTime();
+// console.log("时间"+time)
+// Date.now() > time && document.writeln('<script src="https://topurl.cn/chat.js" defer="defer" fold><\/script>').
+
+</script>
+<!-- <script src="https://topurl.cn/chat.js" defer="defer" async="async" fold></script> --> 
+<!-- <script src="https://topurl.cn/chat.js" async="async" fold></script> -->
+<!-- 统计 -->
+<div class="kf">
+    <a href="https://love.orsrv.link" title="website hit counter"><img src="https://counter10.optistats.ovh/private/freecounterstat.php?c=33qstpus5edxcegaknkkt8nzj6swlkkr" border="0" title="website hit counter"></a>
+</div>
+<a href="https://sl.orys.link/">短链生成器</a>
+<p style="text-align: center;"> 版权所有©️2023 ORSRV All Rights Reserved.</p>
+</html>
