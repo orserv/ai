@@ -1,5 +1,5 @@
 /*
- * http://love.orsrv.link
+ * http://love.orsrv.me
  */
 
 // variables
